@@ -1,0 +1,285 @@
+﻿using System.Diagnostics.Metrics;
+using System.Reflection.Metadata.Ecma335;
+using System.Runtime.ExceptionServices;
+using System.Text;
+
+namespace task6
+{
+    internal class Program
+    {
+        static void Main()
+        {
+           
+           
+
+
+        }
+        static void Task1()
+        {
+            string text = "1) Verilmish metnde {a} simvolun sayi {b} simvolun sayinda nece defe coxdur?";
+            string a = "";
+            string b = " ";
+            int count = 0;
+            int count2 = 0;
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] == 'a')
+                {
+                    a += text[i];
+                    count++;
+
+                }
+            }
+            for (int j = 0; j < text.Length; j++)
+            {
+                if ((char)text[j] == 'b')
+                {
+                    b += text[j];
+                    count2++;
+                }
+            }
+            int result = count / count2;
+            Console.WriteLine($"Result:{result} ");
+        }
+        static void Task2()
+        {
+            string cumle = " Verilmish metnde sol terefden tek yerde dayanan simvollarin hamisi {a} simvoludurmu?";
+            for (int i = 0; i < cumle.Length; i++)
+            {
+
+                cumle.IndexOf(cumle[i]);
+                if (i % 2 == 0)
+                {
+                    if (cumle[i] == 'a')
+                    {
+                        Console.WriteLine($"Sol terefde dayanan hamisi a simvoludur");
+                        return;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sol terefde dayanan hamisi a simvolu deyil.");
+                        return;
+                    }
+
+
+                }
+            }
+        }
+        static void Task3()
+        {
+            string cumle = "Verilmish metnde sol terefden tek yerde dayanan simvollardan necesi {b} -ye beraberdir";
+
+
+            int count = 0;
+            for (int i = 0; i < cumle.Length; i++)
+            {
+
+                if (i % 2 == 0 && cumle[i] == 'b')
+                {
+                    count++;
+                }
+            }
+
+
+            Console.WriteLine(count);
+
+        }
+        static void Task4()
+        {
+
+            string cumle = "Verilmish metnde sol terefden ilk rast gelinen {a} simvolunun yeri tek ededdi yoxsa cut ?";
+
+            int index = cumle.IndexOf("a");
+
+            if (index % 2 == 0)
+            {
+                Console.WriteLine("{a} simvolunun yeri tekdir.");
+            }
+            else
+            {
+                Console.WriteLine("{a} simvolunun yeri cutdur.");
+            }
+
+        }
+        static void Task5()
+        {
+            char[] herfler = { 'a', 'b', 'c' };
+
+            string cumle = "Verilmish metnde sol terefden saydiqda {a},{b},{c} simollarindan hansi birinci gelir?";
+
+            int a = cumle.IndexOf('a');
+            int b = cumle.IndexOf('b');
+            int c = cumle.IndexOf('c');
+            int small = cumle.IndexOfAny(herfler);
+
+            if (small == a)
+            {
+                Console.WriteLine("{a} simvolu birinci gelir.");
+            }
+            else if (small == b)
+            {
+                Console.WriteLine("{b} simvolu birinci gelir.");
+            }
+            else if (small == c)
+            {
+                Console.WriteLine("{c} simvolu birinci gelir.");
+            }
+            else
+            {
+                Console.WriteLine("{a},{b},{c} simvollarina rast gelinmedi.");
+            }
+        }
+        static void Task6()
+        {
+            string cumle = "Verilmish metnde {a} simvolunun sol terefden ve sag terefden indexleri eydidirmi?";
+            int a = cumle.IndexOf("a");
+            int a1 = cumle.LastIndexOf('a');
+            int len = cumle.Length;
+            a1 = len - (a1 + 1);
+
+            if (a == a1)
+            {
+                Console.WriteLine("Indexler eynidir.");
+            }
+            else if (a != a1)
+            {
+                Console.WriteLine("Indexler ferqlidir.");
+            }
+        }
+        static void Task7()
+        {
+            string cumle = "Verilmish metnde {a} simvolu {b} simvolundan qabaq ve oda {c} simvolundan qabaq gelirmi?";
+            int a = cumle.IndexOf("a");
+            int b = cumle.IndexOf("b");
+            int c = cumle.IndexOf("c");
+            int len = cumle.Length;
+
+
+            if (a < b && a < c)
+            {
+                Console.WriteLine("{a} simvolu {b} ve {c} simvollarinda qabag gelir. ");
+            }
+            else if (b < a && b < c)
+            {
+                Console.WriteLine("{b} simvolu {a} ve {c} simvollarinda qabag gelir. ");
+            }
+            else
+            {
+                Console.WriteLine("{c} simvolu {a} ve {b} simvollarinda qabag gelir.");
+            }
+        }
+        static void Task8()
+        {
+
+            string cumle = "Verilmish metnde ilk qabagima cixan {a} simvolundan sonra gelen simvolu 10 defe dalbadal cap et. ";
+            int a = cumle.IndexOf("a");
+            int index = a + 1;
+            string first = cumle.Substring(index, 1);
+
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine(first);
+            }
+        }
+        static void Task9()
+        {
+            string cumle = "Verilmish metinde ilk 3 simvol, son 3 simvolun tersine formasina beraberdir mi ?";
+            string first = cumle.Substring(0, 3);
+            string last = cumle.Substring(cumle.Length - 3);
+
+            if (last == first)
+            {
+                Console.WriteLine("ilk 3 simvol, son 3 simvolun tersine formasina beraberdir");
+            }
+            else
+            {
+                Console.WriteLine("ilk 3 simvol, son 3 simvolun tersine formasina beraber deyil");
+            }
+        }
+        static void Task10()
+        {
+
+            string text = "10)Verilmish metinde 00000 butun reqemleri legv et.";
+            string newText = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                char c = text[i];
+                if (!Char.IsDigit(c))
+                {
+                    newText += c;
+                }
+
+            }
+            Console.WriteLine(newText);
+
+        }
+        static void Task11()
+        {
+
+            string cumle = "11) Verilmish metinde butun {a} simvollarinin qabagina {b} simvolunu ve eyni zamandan butun {b} simvollarinin qabagina {a} simvolunu yaz.";
+            string yenicumle = cumle.Replace("a", "ba");
+            yenicumle = yenicumle.Replace("b", "ab");
+            Console.WriteLine(yenicumle);
+        }
+        static void Task12()
+        {
+            string text = " Verilmish metinde en ilk ve en son {a} simvolundan bashqa yerde qalan butun {a} simvollarini yox et.";
+            string newText = "";
+            char a = 'a';
+
+            int firstIndex = text.IndexOf(a);
+            int lastIndex = text.LastIndexOf(a);
+            if (firstIndex == -1)
+            {
+                Console.WriteLine($"{a} simvolu tapilmadi.");
+                return;
+            }
+            newText = text.Substring(0, firstIndex + 1);
+            for (int i = firstIndex; i < lastIndex; i++)
+            {
+                if (text[i] != a)
+                {
+                    newText += text[i];
+                }
+            }
+            newText += text.Substring(lastIndex);
+            Console.WriteLine(newText);
+        }
+        static void Task13()
+        {
+            string cumle = "Verilimish metinde butun simvollari ardicil shekilde biri balaca, biri boyuk formada cap et.";
+            for (int i = 0; i < cumle.Length; i++)
+            {
+                char ch = cumle[i];
+
+                if (i % 2 == 0)
+                {
+
+                    Console.Write(char.ToUpper(ch));
+                }
+                else
+                {
+                    Console.Write(char.ToLower(ch));
+                }
+            }
+        }
+        static void Task14()
+        {
+
+            string text = "Verilmish metinde butun tek yerde dayanan simvollari ondan sonra gelen simvolun BOYUK formasi ile evez et.";
+
+            for (int i = 0; i < text.Length - 1; i++)
+            {
+                char a = text[i + 1];
+                if (i % 2 == 0 && Char.IsLetter(a))
+                {
+                    text = text.Remove(i, 1);
+                    text = text.Insert(i, $"{Char.ToUpper(a)}");
+                }
+
+            }
+            Console.WriteLine(text);
+        }
+    }
+}
